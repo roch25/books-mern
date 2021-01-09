@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const PORT = 3001;
 
+require("./model/db");
+
 app.use(cors());
 app.use(bodyParser.json());
 
