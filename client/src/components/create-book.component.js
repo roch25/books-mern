@@ -76,7 +76,7 @@ class CreateBook extends Component {
             <input
               type="text"
               className="form-control"
-              value={this.state.isbn}
+              value={this.state.book_isbn}
               onChange={this.onChangeISBN}
             />
           </div>
