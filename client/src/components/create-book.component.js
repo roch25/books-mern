@@ -1,4 +1,5 @@
 import { Component } from "react";
+import axios from "axios";
 
 class CreateBook extends Component {
   state = {};
@@ -42,10 +43,20 @@ class CreateBook extends Component {
     });
   }
 
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
 
     console.log(`Form submitted:`, this.state);
+
+    const newBook = {
+      book_isbnn: this.state.book_isbn,
+      book_name: this.state.book_name,
+      book_author: this.state.book_author,
+      book_price: this.state.book_price,
+    };
+
+    const res = await axios.post("http://localhost:3001/books/add", newBook);
+    console.log(res);
 
     this.setState({
       book_isbn: 0,
