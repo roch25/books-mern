@@ -6,7 +6,7 @@ class CreateBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      book_isbn: 0,
+      book_isbn: "",
       book_name: "",
       book_author: "",
       book_price: 0,
@@ -49,7 +49,7 @@ class CreateBook extends Component {
     console.log(`Form submitted:`, this.state);
 
     const newBook = {
-      book_isbnn: this.state.book_isbn,
+      book_isbn: this.state.book_isbn,
       book_name: this.state.book_name,
       book_author: this.state.book_author,
       book_price: this.state.book_price,
