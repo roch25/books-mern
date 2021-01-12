@@ -14,7 +14,7 @@ class App extends Component {
         <div className="container" style={{ marginTop: 20 }}>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link to="/" className="navbar-brand">
-              MERN-Stack
+              MERN-Stack 📚
             </Link>
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
