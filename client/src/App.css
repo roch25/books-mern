@@ -1,3 +1,7 @@
 .authors {
-  list-style: "✍️ ";
+  list-style: none;
+}
+
+ul {
+  padding-left: 0;
 }

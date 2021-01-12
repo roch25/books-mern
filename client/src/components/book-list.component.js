@@ -17,13 +17,13 @@ class BookList extends Component {
   render() {
     return (
       <>
-        <h3>Book List</h3>
+        <h3 style={{ marginTop: 10 }}>Book List</h3>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
               <th>ISBN</th>
               <th>Name</th>
-              <th>Author</th>
+              <th>Author(s)</th>
               <th>Price</th>
             </tr>
           </thead>
