@@ -11,7 +11,7 @@ class Book extends Component {
         <td>{this.props.book.book_author}</td>
         <td>{this.props.book.book_price}</td>
         <td>
-          <Link to={"/edit/" + this.props.book._id}>Edit</Link>
+          <Link to={"update/" + this.props.book._id}>Edit</Link>
         </td>
       </tr>
     );

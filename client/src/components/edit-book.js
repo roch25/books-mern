@@ -1,24 +1,30 @@
-import { Component } from "react";
 import axios from "axios";
+import React from "react";
 
-class CreateBook extends Component {
-  state = {};
-  constructor(props) {
-    super(props);
-    this.state = {
-      book_isbn: "",
-      book_name: "",
-      book_author: "",
-      book_price: 0,
-    };
-
-    this.onChangeISBN = this.onChangeISBN.bind(this);
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangeAuthor = this.onChangeAuthor.bind(this);
-    this.onChangePrice = this.onChangePrice.bind(this);
+class EditBook extends React.Component {
+  state = {
+    book_isbn: "",
+    book_name: "",
+    book_author: "",
+    book_price: 0,
+  };
+  constructor() {
+    super();
     this.onSubmit = this.onSubmit.bind(this);
   }
+  async componentDidMount() {
+    const res = await axios.get(
+      "http://localhost:3001/books/" + this.props.match.params.id
+    );
 
+    console.log(res.data);
+    this.setState({
+      book_isbn: res.data.book_isbn,
+      book_name: res.data.book_name,
+      book_author: res.data.book_author,
+      book_price: res.data.book_price,
+    });
+  }
   onChangeISBN(e) {
     this.setState({
       book_isbn: e.target.value,
@@ -55,21 +61,18 @@ class CreateBook extends Component {
       book_price: this.state.book_price,
     };
 
-    const res = await axios.post("http://localhost:3001/books/add", newBook);
+    const res = await axios.post(
+      `http://localhost:3001/books/update/${this.props.match.params.id}`,
+      newBook
+    );
     console.log(res);
 
-    this.setState({
-      book_isbn: 0,
-      book_name: "",
-      book_author: "",
-      book_price: 0,
-    });
+    this.props.history.push("/");
   }
-
   render() {
     return (
-      <div style={{ marginTop: 10 }}>
-        <h5>Add New Book</h5>
+      <>
+        <h3 align="center">Update Book</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>ISBN: </label>
@@ -77,26 +80,25 @@ class CreateBook extends Component {
               type="text"
               className="form-control"
               value={this.state.book_isbn}
-              onChange={this.onChangeISBN}
+              onChange={this.onChangeISBN.bind(this)}
             />
           </div>
           <div className="form-group">
-            <label>Book Name: </label>
+            <label>Name: </label>
             <input
               type="text"
               className="form-control"
               value={this.state.book_name}
-              onChange={this.onChangeName}
+              onChange={this.onChangeName.bind(this)}
             />
           </div>
-
           <div className="form-group">
             <label>Book Author: </label>
             <input
               type="text"
               className="form-control"
               value={this.state.book_author}
-              onChange={this.onChangeAuthor}
+              onChange={this.onChangeAuthor.bind(this)}
             />
           </div>
 
@@ -106,21 +108,21 @@ class CreateBook extends Component {
               type="text"
               className="form-control"
               value={this.state.book_price}
-              onChange={this.onChangePrice}
+              onChange={this.onChangePrice.bind(this)}
             />
           </div>
 
           <div className="form-group">
             <input
               type="submit"
-              value="Create Book"
+              value="Update Book"
               className="btn btn-primary"
             />
           </div>
         </form>
-      </div>
+      </>
     );
   }
 }
 
-export default CreateBook;
+export default EditBook;

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 import BookList from "./components/book-list.component";
 import CreateBook from "./components/create-book.component";
+import EditBook from "./components/edit-book";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -19,7 +20,7 @@ class App extends Component {
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
                   <Link to="/" className="nav-link">
-                    Todos
+                    Books
                   </Link>
                 </li>
                 <li className="navbar-item">
@@ -32,6 +33,7 @@ class App extends Component {
           </nav>
           <Route path="/" exact component={BookList} />
           <Route path="/create" exact component={CreateBook} />
+          <Route path="/update/:id" exact component={EditBook} />
         </div>
       </Router>
     );
